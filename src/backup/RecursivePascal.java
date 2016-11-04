@@ -7,8 +7,8 @@ package backup;
 
 public class RecursivePascal implements Pascal{
     static boolean inv;// invert the triangle or not
-    static int save; //inver save value for n
-    static int[][] memory;
+    static long save; //inver save value for n
+    static long[][] memory;
 
 
     public static void main(String[] args) {
@@ -18,7 +18,7 @@ public class RecursivePascal implements Pascal{
         int n = 50;
         save = n;
         inv = false;
-        memory = new int[n + 1][n + 1];
+        memory = new long[n + 1][n + 1];
         //if invert is false reset the direction of the triangle( from 0 to max)
         if (!inv) {
             n = 0;
@@ -30,25 +30,25 @@ public class RecursivePascal implements Pascal{
 
     // bionormial method
     public int binom(int n, int k) {
-        int ans = 0;
+        long ans = 0;
         //exception incase k is bigger than n
         if (k > n) {
             System.out.println("K can not bigger than N.");
             System.out.println("Terminated");
-            return ans;
+            return (int)ans;
         }
         //nothing is wrong proceed bionormial calculation
         else {
             if (n == k || k == 0) {
                 return 1;
             } else if (memory[n][n - k] != 0) {
-                return memory[n][n - k];
+                return (int)memory[n][n - k];
             } else {
                 ans = binom(n - 1, k - 1) + binom(n - 1, k);
                 memory[n][n - k] = ans;
 
             }
-            return ans;
+            return(int)ans;
 
         }
     }
@@ -56,10 +56,10 @@ public class RecursivePascal implements Pascal{
     // print pascal triangle
     public void printPascal(int n) {
 // non invert triangle
-        int star = ((save + 1) - n) / 2;
+        long star = ((save + 1) - n) / 2;
 
         if (!inv) {
-            if (n > save) {
+            if (n >= save) {
                 System.out.println();
                 return;
             } else {

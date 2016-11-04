@@ -5,7 +5,7 @@ package backup;
  * recurtion bionormial pascal triangle
  */
 
-public class RecursivePascal {
+public class RecursivePascal implements Pascal{
     static boolean inv;// invert the triangle or not
     static int save; //inver save value for n
     static int[][] memory;
@@ -29,7 +29,7 @@ public class RecursivePascal {
     }
 
     // bionormial method
-    public static int binom(int n, int k) {
+    public int binom(int n, int k) {
         int ans = 0;
         //exception incase k is bigger than n
         if (k > n) {

@@ -5,37 +5,49 @@ package backup;
  * recurtion bionormial pascal triangle
  */
 
-public class RecursivePascal implements Pascal{
-    static boolean inv;// invert the triangle or not
-    static long save; //inver save value for n
-    static long[][] memory;
+public class RecursivePascal extends ErrorPascal implements Pascal{
+   // static boolean inv;// invert the triangle or not
 
+
+boolean inv;
+    int counter;
+    public RecursivePascal(boolean inv) {
+        super(inv);
+        this.inv =inv;
+        counter =0;
+    }
 
     public static void main(String[] args) {
         //System.out.println(binom(2,3));
         // main method- pascal method call with out static
-        RecursivePascal a = new RecursivePascal();
-        int n = 50;
-        save = n;
-        inv = false;
-        memory = new long[n + 1][n + 1];
+        //RecursivePascal a = new RecursivePascal();
+        //int n = 50;
+
+
+
         //if invert is false reset the direction of the triangle( from 0 to max)
-        if (!inv) {
-            n = 0;
-        }
+
+
 
         //otherwise do inverse( from max to 0)
-        a.printPascal(n);
+        //a.printPascal(n);
     }
 
     // bionormial method
     public int binom(int n, int k) {
         long ans = 0;
         //exception incase k is bigger than n
+        /*
         if (k > n) {
             System.out.println("K can not bigger than N.");
             System.out.println("Terminated");
             return (int)ans;
+        }*/
+        //new exception
+        exportn(n);
+        exportk(k);
+        if (!sainitycheck()){
+            return 0;
         }
         //nothing is wrong proceed bionormial calculation
         else {
@@ -55,8 +67,22 @@ public class RecursivePascal implements Pascal{
 
     // print pascal triangle
     public void printPascal(int n) {
+        exportn(n);
+        init();
+        if ( counter ==0) {
+            if (!getinv()) {
+                n = 0;
+            }
+            counter++;
+        }
+        //exception
+
+        if (!sainitycheck()){
+            return ;
+        }
 // non invert triangle
         long star = ((save + 1) - n) / 2;
+
 
         if (!inv) {
             if (n >= save) {

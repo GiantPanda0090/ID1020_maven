@@ -47,12 +47,26 @@ public class IterativePascal extends ErrorPascal implements Pascal {
                 }
             }
         }
-        for(int i=0;i<n;i++){
-            for(int k =0;k<=i;k++) {
-                System.out.print(save[i][k]);
-                System.out.print(" ");
+        if (!inv) {
+
+            for (int i = 0; i < n; i++) {
+                for (int k = 0; k <= i; k++) {
+                    System.out.print(save[i][k]);
+                    System.out.print(" ");
+                }
+                System.out.println(" ");
             }
-            System.out.println(" ");
+        }
+        else if(inv){
+            for (int i = n; i > 0; i--) {
+                for (int k = 0; k <= i; k++) {
+                    if (save[i][k]!=0) {
+                        System.out.print(save[i][k]);
+                        System.out.print(" ");
+                    }
+                }
+                System.out.println(" ");
+            }
         }
         return;
     }

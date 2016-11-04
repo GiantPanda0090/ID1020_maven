@@ -6,7 +6,7 @@ package backup;
 public class Drive {
     public static void main(String[] args) {
 
-        ErrorPascal a = new IterativePascal();
+        ErrorPascal a = new IterativePascal(false);
         a.printPascal(20);
         System.out.print(a.binom(1,6));
         System.out.println(" ");

@@ -13,7 +13,7 @@ public class Drive {
         System.out.println("Change test object");
         System.out.println(" ");
 
-        ErrorPascal b = new RecursivePascal(true);
+        ErrorPascal b = new RecursivePascal(false);
         b.printPascal(20);
         System.out.print(b.binom(1,1));
     }

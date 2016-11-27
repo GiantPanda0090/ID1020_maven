@@ -1,4 +1,4 @@
-package lab_1;
+package lab_1_Maven;
 
 /**
  * Created by AlstonQiLee on 2016-11-03.

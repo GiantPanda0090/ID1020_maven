@@ -1,4 +1,4 @@
-package backup;
+package lab_1;
 
 /**
  * Created by AlstonQiLee on 2016-11-04.
@@ -51,11 +51,13 @@ public abstract class ErrorPascal implements Pascal {
             System.out.println("Terminated");
             return false;
         }
+
         if (this.n > 32) {
             System.out.println("Row can not be smaller than " + 32 + "row :");
             System.out.println("Terminated");
             return false;
         }
+
         if (this.k > this.n) {
             System.out.println("K can not bigger than N.");
             System.out.println("Terminated");

@@ -1,4 +1,4 @@
-package backup;
+package lab_1;
 
 /**
  * Created by AlstonQiLee on 2016-11-03.

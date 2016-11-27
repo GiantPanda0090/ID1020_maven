@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ID1020.iml" filepath="$PROJECT_DIR$/ID1020.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../untitled/algs4-test.iml" filepath="$PROJECT_DIR$/../untitled/algs4-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../ID1020_Maven/algs4-test.iml" filepath="$PROJECT_DIR$/../ID1020_Maven/algs4-test.iml" />
     </modules>
   </component>
 </project>

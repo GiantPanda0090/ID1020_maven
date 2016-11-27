@@ -1,8 +1,7 @@
-package backup;
+package lab_1;
 
 
 //import java.lang.reflect.Array;
-import java.util.Arrays;
 
 /**
  * Created by AlstonQiLee on 2016-11-04.

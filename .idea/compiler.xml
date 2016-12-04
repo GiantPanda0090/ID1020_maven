@@ -23,10 +23,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="algs4-test" />
+        <module name="ID1020" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="algs4-test" target="1.7" />
+      <module name="ID1020" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

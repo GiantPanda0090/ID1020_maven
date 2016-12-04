@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class Driver {
     public static void main(String[] args) {
-        Trie<Integer> a = new Trie<>();
+        Trie<Integer> a = new Trie<Integer>();
         File input = new File("C:\\Users\\AlstonQiLee\\IdeaProjects\\ID1020\\src\\lab_4\\pg98.txt");//url
         ArrayList<String> word= new ArrayList();//word list
         Driver driver = new Driver();//non static call

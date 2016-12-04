@@ -49,7 +49,7 @@ public class Driver {
         /*  test branch!! use in seminar for question 1,2,3,4 on problem 3,3*/
         driver.max10(prefix2,prefix2word);//prefix10
 
-      // driver.max10(count,word);//max10
+      //driver.max10(count,word);//max10
         //driver.min10(count,word);//min10
     }
 

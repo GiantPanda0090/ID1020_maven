@@ -11,7 +11,7 @@ import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) {
-        Trie<Integer> a = new Trie<>();
+        Trie<Integer> a = new Trie<Integer>();
  a.put("doggy");
         a.put("doggyae");
         a.put("doggyab");

@@ -130,7 +130,7 @@ public class Trie<Value>  {
     String []word= new String[10];
     public Iterator<String> iterator(String prefix){
 
-        String key= prefix;
+        final String key= prefix;
         Iterator itr = new Iterator() {
             int check=0;
             Node x = root;
@@ -138,7 +138,7 @@ public class Trie<Value>  {
             Node t=hit.next[check];;
 
 
-            @Override
+
             public boolean hasNext() {
                 //int answer=0;
                 Node hit =search(x,key,0);
@@ -146,7 +146,7 @@ public class Trie<Value>  {
                 return answer;
             }
 
-            @Override
+
             public Object next() {
                 //int answer=0;
                 StringBuilder a=null;
@@ -179,6 +179,9 @@ public class Trie<Value>  {
                 t =hit.next[check];
                 //System.out.print(a.toString() + " ");
                 return a;
+            }
+            public void remove(){
+
             }
         };
         return itr;

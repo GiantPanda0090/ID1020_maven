@@ -5,6 +5,7 @@ package lab_5;
  */
     import edu.princeton.cs.algs4.CC;
     import edu.princeton.cs.algs4.DepthFirstSearch;
+    import edu.princeton.cs.algs4.IndexMinPQ;
     import edu.princeton.cs.algs4.Queue;
     import lab_1.IterativePascal;
     import se.kth.id1020.Edge;
@@ -12,6 +13,9 @@ package lab_5;
     import se.kth.id1020.DataSource;
     import se.kth.id1020.Vertex;
 
+    import java.util.ArrayList;
+    import java.util.Collections;
+    import java.util.Comparator;
     import java.util.Scanner;
 
 //import java.util.Queue;
@@ -24,10 +28,12 @@ boolean [] mark;
     String [] labelList;
     int counter=1;
     public int INFINITY = Integer.MAX_VALUE;
+    Queue<Integer>[] edgeToA;
         public static void main(String[] args) {
             Graph g = DataSource.load();
             Paths p= new Paths();
             // work on g
+            p.edgeToA= new Queue[g.numberOfVertices()];
             p.mark = new boolean[g.numberOfVertices()];
             p.distTo= new int[g.numberOfVertices()];
             p.edgeTo=new int[g.numberOfVertices()];
@@ -76,12 +82,24 @@ boolean [] mark;
                     System.out.println("------------------------------------------------------------------------------------------------------------------------");
                 }
                 if (choice == 2) {
+                    int vertex = p.search(g,"Renyn");
+                    p.prismMST(g);
+                    System.out.println(" ");
+                    System.out.println(" ");
+                    System.out.println("The shortest path bewtween Renyn and Parses is: ");
 
-
-
-                    
+                    System.out.print("Shortest path is: ");
+                    for (int v = 0; vertex!=p.search(g,"Parses"); v++) {
+                        System.out.print(g.vertex(vertex));
+                        vertex = p.edgeToA[vertex].dequeue();
+                            System.out.print(" --> ");
+                    }
+                    System.out.print(g.vertex(vertex));
                     System.out.println(" ");
                     System.out.println("------------------------------------------------------------------------------------------------------------------------");
+
+
+
 
                 }
             }
@@ -168,6 +186,69 @@ if(w.to==sTo){
     }
     return distTo[sTo];//non-weight
 }
+    public void prismMST(Graph g){
+       // int v =0;
+        mark= new boolean[g.numberOfVertices()];
+       edgeToA=new Queue[g.numberOfVertices()];
+        ArrayList<Edge> q = new ArrayList<Edge>();
+      int i=1006;
+        mark[1006]=true;
+        while(i!=918){
+
+          for (Edge e : g.adj(i)) {
+                  q.add(e);
+          }
+          if (edgeToA[i] == null) {
+              edgeToA[i] = new Queue<Integer>();
+          }
+          Edge e = Collections.min(q, new Comparator<Edge>() {
+              public int compare(Edge o1, Edge o2) {
+                  return Double.compare(o2.weight, o1.weight);
+              }
+          });
+
+
+
+          if(mark[e.to]!=true) {
+              edgeToA[i].enqueue(e.to);
+              mark[e.to] = true;
+              i=e.to;
+              q.remove(e);
+          }else{
+             // Edge w;
+              while(mark[e.to]==true) {
+                  q.remove(e);
+                  if(q.isEmpty()){
+                      break;
+                  }
+                   e = Collections.min(q, new Comparator<Edge>() {
+                      public int compare(Edge o1, Edge o2) {
+                          return Double.compare(o2.weight, o1.weight);
+                      }
+                  });
+              }
+              if(!q.isEmpty()){
+                  edgeToA[i].enqueue(e.to);
+                  mark[e.to] = true;
+                  i=e.to;
+                  q.remove(e);
+              }
+
+
+          }
+
+
+      }
+        return;
+    }
+
+    public boolean allmarked(){
+        boolean con=true;
+        for(int i=0;i<mark.length;i++){
+            con =con&mark[i];
+        }
+        return con;
+    }
     public int search(Graph G,String label){
         dfsVis(G,0,false);
         isConnect(G,false);

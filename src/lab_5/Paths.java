@@ -5,9 +5,11 @@ package lab_5;
  */
 
 import edu.princeton.cs.algs4.Queue;
+import edu.princeton.cs.algs4.Stack;
 import se.kth.id1020.DataSource;
 import se.kth.id1020.Edge;
 import se.kth.id1020.Graph;
+import se.kth.id1020.Vertex;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -82,10 +84,21 @@ boolean [] mark;
                     //  p.prismMST(g);
                     System.out.println(" ");
                     System.out.println(" ");
-                    System.out.println("The shortest path bewtween Renyn and Parses is: " + p.DShort(g, "Renyn", "Parses"));
-
+                    System.out.println("The shortest path bewtween Renyn and Parses is: " + p.DShort(g, "Renyn", "Parses").intValue());
                     System.out.print("Shortest path is: ");
-                   p.counter =0;
+                    p.counter =0;
+                    Stack<Vertex> path = new Stack<Vertex>();
+                    for (Vertex v = g.vertex(p.edgeTo[vertex]); v.id!=1006; vertex = p.edgeTo[vertex]) {
+                        v=g.vertex(p.edgeTo[vertex]);
+                        path.push(v);
+                    }
+                    p.counter =0;
+                    for(Vertex v:path){
+                        System.out.print(v + " -->");
+                        p.counter++;
+                    }
+
+                 /*  p.counter =0;
                     for (int v = 0; vertex!=1006; v++) {
                         System.out.print(g.vertex(vertex));
                         p.counter++;
@@ -93,8 +106,9 @@ boolean [] mark;
                         if (v <= p.counter) {
                             System.out.print(" --> ");
                         }
-                    }
-                    System.out.print(g.vertex(vertex));
+                    }*/
+                    System.out.print(g.vertex(918));
+                    p.counter++;
                     System.out.println(" ");
                     System.out.println("The shortest path bewtween Renyn and Parses is: " + " "+ p.counter+ " length");
                     System.out.println("------------------------------------------------------------------------------------------------------------------------");
@@ -195,16 +209,17 @@ if(w.to==sTo){
         int sTo =search(G,toLabel);
         mark=new boolean[G.numberOfVertices()];
         edgeTo = new int[G.numberOfVertices()];
-        Queue<Integer>q = new Queue<Integer>();
+        ArrayList<Integer>q = new ArrayList<Integer>();
         for (int v = 0; v < G.numberOfVertices(); v++)//setup
             distToD[v] = Double.POSITIVE_INFINITY;
         distToD[s] = 0.0;
         mark[s] = true;
-        q.enqueue(s);
+        q.add(0,s);
       //  counter =0;
         while (!q.isEmpty()) {//brench
-            int v = q.dequeue();
-
+            int v = q.get(q.size()-1);
+q.remove(q.size()-1);
+            q.trimToSize();
             //System.out.print(G.vertex(v) );
 
             for (Edge w : G.adj(v)) {//content inside brench
@@ -214,16 +229,15 @@ if(w.to==sTo){
                         //counter++;
                         distToD[w.to] = distToD[v] + w.weight;
                         mark[w.to] = true;
-                        q.enqueue(w.to);
+                        if(!q.contains(w.to)){
+                            q.add(0,w.to);
+                        }
+                        //q.enqueue(w.to);
                     }
 
-                    if(w.to==sTo){
-                        break;
-                    }
+
                 }
-                if(w.to==sTo){
-                    break;
-                }
+
             }
         }
         return distToD[sTo];//non-weight
